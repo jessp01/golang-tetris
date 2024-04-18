@@ -24,6 +24,7 @@ const BoardRows = 22
 const BoardCols = 10
 
 const ResourceDir = "/resources"
+
 // Point represents a coordinate on the game board with Point{row:0, col:0}
 // representing the bottom left
 type Point struct {
@@ -123,7 +124,7 @@ func run() {
 	if err != nil {
 		panic(err)
 	}
-	blockGen, err = ss.LoadSpriteSheet(pwd + ResourceDir + "/blocks.png", 2, 8)
+	blockGen, err = ss.LoadSpriteSheet(pwd+ResourceDir+"/blocks.png", 2, 8)
 	if err != nil {
 		panic(err)
 	}
@@ -299,5 +300,5 @@ func piece2Block(p Piece) Block {
 		return Green
 	}
 	panic("piece2Block: Invalid piece passed in")
-	return GraySpecial // Return strange value value
+	// return GraySpecial // Return strange value value
 }

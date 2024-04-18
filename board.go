@@ -80,7 +80,7 @@ func (b Board) checkCollision(s Shape) bool {
 	for i := 0; i < 4; i++ {
 		r := s[i].row
 		c := s[i].col
-		if r < 0 || r > 21 || c < 0 || c > BoardCols -1 || b[r][c] != Empty {
+		if r < 0 || r > 21 || c < 0 || c > BoardCols-1 || b[r][c] != Empty {
 			return true
 		}
 	}
