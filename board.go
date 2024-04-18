@@ -184,11 +184,12 @@ func (b *Board) fillShape(s Shape, val Block) {
 // (ie activeShape).
 func (b *Board) addPiece() {
 	var offset int
-	if nextPiece == IPiece {
+	switch nextPiece {
+	case IPiece:
 		offset = rand.Intn(7)
-	} else if nextPiece == OPiece {
+	case OPiece:
 		offset = rand.Intn(9)
-	} else {
+	default:
 		offset = rand.Intn(8)
 	}
 	baseShape := getShapeFromPiece(nextPiece)
@@ -202,7 +203,7 @@ func (b *Board) addPiece() {
 // displayBoard displays a particular game board with all of its pieces
 // onto a given window, win
 func (b *Board) displayBoard(win *pixelgl.Window) {
-	boardBlockSize := 20.0 //win.Bounds().Max.X / 10
+	boardBlockSize := 20.0 // win.Bounds().Max.X / 10
 	pic := blockGen(0)
 	imgSize := pic.Bounds().Max.X
 	scaleFactor := float64(boardBlockSize) / float64(imgSize)

@@ -23,6 +23,7 @@ const BoardRows = 22
 // BoardCols is the width of the game board in terms of blocks
 const BoardCols = 10
 
+// ResourceDir relative path to dir where images are stored
 const ResourceDir = "/resources"
 
 // Point represents a coordinate on the game board with Point{row:0, col:0}

@@ -48,6 +48,7 @@ func LoadSpriteSheet(path string, row, col int) (func(int) pixel.Picture, error)
 	}, nil
 }
 
+// LoadPicture load image from path
 func LoadPicture(path string) (pixel.Picture, error) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -61,6 +62,7 @@ func LoadPicture(path string) (pixel.Picture, error) {
 	return pixel.PictureDataFromImage(img), nil
 }
 
+// GetPlayBGPic shadow board, overlayed over BG image
 func GetPlayBGPic() pixel.Picture {
 	blackImg := image.NewRGBA(image.Rect(0, 0, 200, 400))
 	for x := 0; x < 200; x++ {
@@ -73,6 +75,7 @@ func GetPlayBGPic() pixel.Picture {
 	return blackPic
 }
 
+// GetNextPieceBGPic draw next/upcoming shape widget
 func GetNextPieceBGPic() pixel.Picture {
 	blackImg := image.NewRGBA(image.Rect(0, 0, 100, 100))
 	for x := 0; x < 100; x++ {
