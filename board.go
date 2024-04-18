@@ -3,8 +3,8 @@ package main
 import (
 	"math/rand"
 
-	"github.com/faiface/pixel"
-	"github.com/faiface/pixel/pixelgl"
+	pixel "github.com/gopxl/pixel"
+	"github.com/gopxl/pixel/pixelgl"
 )
 
 // isTouchingFloor checks if the piece that the user is controlling has a piece
@@ -80,7 +80,7 @@ func (b Board) checkCollision(s Shape) bool {
 	for i := 0; i < 4; i++ {
 		r := s[i].row
 		c := s[i].col
-		if r < 0 || r > 21 || c < 0 || c > 9 || b[r][c] != Empty {
+		if r < 0 || r > 21 || c < 0 || c > BoardCols -1 || b[r][c] != Empty {
 			return true
 		}
 	}
@@ -137,7 +137,7 @@ func (b *Board) checkRowCompletion(s Shape) {
 			r := s[i].row
 			emptyFound := false
 			// Look for empty row
-			for c := 0; c < 10; c++ {
+			for c := 0; c < BoardCols; c++ {
 				if b[r][c] == Empty {
 					emptyFound = true
 					continue
@@ -161,7 +161,7 @@ func (b *Board) checkRowCompletion(s Shape) {
 // deleteRow remoes a row by shifting everything above it down by one.
 func (b *Board) deleteRow(row int) {
 	for r := row; r < 21; r++ {
-		for c := 0; c < 10; c++ {
+		for c := 0; c < BoardCols; c++ {
 			b[r][c] = b[r+1][c]
 		}
 	}

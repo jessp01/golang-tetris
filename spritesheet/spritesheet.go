@@ -6,7 +6,7 @@ import (
 	"image/color"
 	"os"
 
-	"github.com/faiface/pixel"
+	pixel "github.com/gopxl/pixel"
 )
 
 // LoadSpriteSheet takes a path to a resource and how it should be divided and returns

@@ -8,9 +8,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/faiface/pixel"
-	"github.com/faiface/pixel/pixelgl"
-	"github.com/faiface/pixel/text"
+	pixel "github.com/gopxl/pixel"
+	"github.com/gopxl/pixel/pixelgl"
+	"github.com/gopxl/pixel/text"
 	"golang.org/x/image/colornames"
 	"golang.org/x/image/font/basicfont"
 
@@ -23,6 +23,7 @@ const BoardRows = 22
 // BoardCols is the width of the game board in terms of blocks
 const BoardCols = 10
 
+const ResourceDir = "/resources"
 // Point represents a coordinate on the game board with Point{row:0, col:0}
 // representing the bottom left
 type Point struct {
@@ -31,7 +32,7 @@ type Point struct {
 }
 
 // Board is an array containing the entire game board pieces.
-type Board [22][10]Block
+type Board [BoardRows][BoardCols]Block
 
 // Block represents the color of the block
 type Block int
@@ -90,6 +91,7 @@ var leftRightDelay float64
 var moveCounter int
 var score int
 var nextPiece Piece
+var gameTitle = "Blockfall"
 
 var blockGen func(int) pixel.Picture
 var bgImgSprite pixel.Sprite
@@ -106,7 +108,7 @@ func run() {
 	windowWidth := 765.0
 	windowHeight := 450.0
 	cfg := pixelgl.WindowConfig{
-		Title:  "Blockfall",
+		Title:  gameTitle,
 		Bounds: pixel.R(0, 0, windowWidth, windowHeight),
 		VSync:  true,
 	}
@@ -121,13 +123,13 @@ func run() {
 	if err != nil {
 		panic(err)
 	}
-	blockGen, err = ss.LoadSpriteSheet(pwd+"/blocks.png", 2, 8)
+	blockGen, err = ss.LoadSpriteSheet(pwd + ResourceDir + "/blocks.png", 2, 8)
 	if err != nil {
 		panic(err)
 	}
 
 	// Background image, by ansimuz on opengameart.org
-	bgPic, err := ss.LoadPicture(pwd + "/parallax-mountain-bg.png")
+	bgPic, err := ss.LoadPicture(pwd + ResourceDir + "/parallax-mountain-bg.png")
 	if err != nil {
 		panic(err)
 	}
